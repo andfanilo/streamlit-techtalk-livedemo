@@ -100,7 +100,7 @@ def main():
 
     st.sidebar.header("About")
     st.sidebar.text("Made by M. Fanilo ANDRIANASOLO")
-    st.sidebar.text("Code : http://github.com")
+    st.sidebar.text("Code : https://github.com/andfanilo/streamlit-lyondatascience-20200422")
 
 
 def load_data(name_dataset):
