@@ -12,34 +12,52 @@ numerics = ["int16", "int32", "int64", "float16", "float32", "float64"]
 
 
 def main():
+    st.header("Titanic: Machine Learning from Disaster")
+    st.sidebar.header("Configuration")
+
     df = load_data()
     target = "Survived"
+    features = [c for c in df.columns.values if c != target]
 
-    all_cols = df.columns.values
-    numeric_cols = df.select_dtypes(include=numerics).columns.values
-    obj_cols = df.select_dtypes(include=["object"]).columns.values
-
-    ### START HERE ###
+    ### START
     pass
-    ### END HERE ###
+    ### END 
 
 
 def load_data():
-    return pd.read_csv("data/titanic.csv")
+    df = pd.read_csv("data/titanic.csv")
+    df.drop(["PassengerId"], axis=1, inplace=True)
+    df.drop(["Name"], axis=1, inplace=True)
+    df.drop(["Ticket"], axis=1, inplace=True)
+    df.drop(["Cabin"], axis=1, inplace=True)
+    df.fillna(df.mean(), inplace=True)
+
+    df = pd.concat(
+        [df, pd.get_dummies(df["Sex"].astype("category"), prefix="sex")], axis=1
+    )
+    df = pd.concat(
+        [df, pd.get_dummies(df["Embarked"].astype("category"), prefix="embarked")],
+        axis=1,
+    )
+    df.drop(["Sex"], axis=1, inplace=True)
+    df.drop(["Embarked"], axis=1, inplace=True)
+
+    return df
 
 
 def read_markdown_file(path):
     return Path(path).read_text()
 
 
-@st.cache
+@st.cache(allow_output_mutation=True, suppress_st_warning=True)
 def train_rf(df, features, target):
-    X = df[features].fillna(-1)
+    st.error("Cache miss !")
+    X = df[features]
     y = df[target].astype("category")
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.33, random_state=42
     )
-    clf = RandomForestClassifier()
+    clf = RandomForestClassifier(max_depth=3)
     clf.fit(X_train, y_train)
 
     fig, ax = plt.subplots()
