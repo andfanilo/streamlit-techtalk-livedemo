@@ -1,10 +1,5 @@
-import altair as alt
-import matplotlib.pyplot as plt
-import pandas as pd
 import streamlit as st
 
-st.header("Hello chat")
+st.header("Hello world")
 
-st.subheader("Make yourself comfortable")
-
-st.image("images/cat.png")
+st.image("images/cat.jpg")
