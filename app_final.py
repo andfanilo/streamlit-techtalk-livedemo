@@ -50,7 +50,7 @@ def main():
         st.subheader("Classification")
 
         if st.button("Run training"):
-            clf, confusion_matrix = train_rf(df, features, target)
+            clf, confusion_matrix = train_rf(df)
             st.balloons()
             st.pyplot(confusion_matrix)
 

@@ -36,8 +36,10 @@ def read_markdown_file(path):
 
 
 @st.cache(allow_output_mutation=True, suppress_st_warning=True)
-def train_rf(df, features, target):
+def train_rf(df):
     st.error("Cache miss !")
+    target = "Survived"
+    features = [c for c in df.columns.values if c != target]
     X = df[features]
     y = df[target].astype("category")
     X_train, X_test, y_train, y_test = train_test_split(
