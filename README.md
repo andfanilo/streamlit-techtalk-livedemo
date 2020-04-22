@@ -27,12 +27,13 @@ streamlit run https://raw.githubusercontent.com/andfanilo/streamlit-lyondatascie
   - Streamlit watches file and updates when change or save detected
 - `st.markdown(":tada: Streamlit is **super** easy")` 
   - Tip : markdown accepts HTML/CSS `st.markdown(":tada: <span style='color:red;'>Streamlit</span> is **super** easy", unsafe_allow_html=True)`
-- Pull an image of Titanic : `st.image("images/titanic.jpg")`.
+- Pull an image of Titanic : `st.image("images/titanic.jpg", width=300)`.
 - Now let's plot, first read Titanic in DF `df = pd.read_csv('data/titanic.jpg')`.
   - We can `st.dataframe(df)` to see our dataframe live.
   - Tip : Style dataframe : `st.dataframe(df.style.background_gradient(cmap="BuGn"))`
+- Plot Matplotlib ? : `fig, ax = plt.subplots(); df.hist("Age", ax=ax); st.pyplot(fig)`
 - Describe Altair 
-- So to build chart : `chart = alt.Chart(df).mark_bar().encode(x="Age", y="count()")` then into `st.altair_chart(chart)`
+- So to build chart : `chart = alt.Chart(df).mark_bar().encode(x="Age", y="count()", tooltip=['Age']).interactive()` then into `st.altair_chart(chart)`
 - Change bar to red `.mark_bar(color="red")`
 - Add color by Survived instead `.encode(x="Age", y="count()", color="Survived")`
 - If it's hard to remember, wrap with echo to see code `with st.echo: chart = ...`.
@@ -40,6 +41,7 @@ streamlit run https://raw.githubusercontent.com/andfanilo/streamlit-lyondatascie
 Transition to interactive : now this is very static, what if I want to plot the distribution of another column ?
 
 - instead of modifying the script, extract `col = "Age"` and then `col = st.selectbox("...", df.columns)`.
+- `col = st.selectbox("...", df.columns, df.columns.values.tolist().index("Age"))`
   - put `Name`, I like `Name` :) .
 
 ### Part 2 - Interactive
