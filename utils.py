@@ -35,9 +35,7 @@ def read_markdown_file(path):
     return Path(path).read_text()
 
 
-@st.cache(allow_output_mutation=True, suppress_st_warning=True)
-def train_rf(df):
-    st.error("Cache miss !")
+def train_rf(df, n_estimators=100, max_depth=3):
     target = "Survived"
     features = [c for c in df.columns.values if c != target]
     X = df[features]
@@ -45,7 +43,7 @@ def train_rf(df):
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.33, random_state=42
     )
-    clf = RandomForestClassifier(max_depth=3)
+    clf = RandomForestClassifier(n_estimators=n_estimators, max_depth=max_depth)
     clf.fit(X_train, y_train)
 
     fig, ax = plt.subplots()

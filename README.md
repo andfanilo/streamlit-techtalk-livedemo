@@ -2,9 +2,11 @@
 
 ## Prerequisites
 
-- conda create -n streamlit python=3.7
-- conda activate streamlit
-- pip install streamlit pandas altair matplotlib seaborn plotly bokeh scikit-learn vega_datasets
+```
+conda create -n streamlit python=3.7
+conda activate streamlit
+pip install streamlit pandas altair matplotlib seaborn plotly bokeh scikit-learn
+```
 
 ## Run
 
@@ -32,6 +34,7 @@ streamlit run https://raw.githubusercontent.com/andfanilo/streamlit-lyondatascie
 - Describe Altair 
 - So to build chart : `chart = alt.Chart(df).mark_bar().encode(x="Age", y="count()")` then into `st.altair_chart(chart)`
 - Change bar to red `.mark_bar(color="red")`
+- Add color by Survived instead `.encode(x="Age", y="count()", color="Survived")`
 - If it's hard to remember, wrap with echo to see code `with st.echo: chart = ...`.
 
 Transition to interactive : now this is very static, what if I want to plot the distribution of another column ?
@@ -49,9 +52,10 @@ Transition to interactive : now this is very static, what if I want to plot the 
 - If you remember sidebar, put file_uploader in sidebar.
 - Let's put `if st.sidebar.checkbox('Data preview':)` to hide dataframe. 
   - `st.write(df.dtypes)` and `st.write(df.describe())` there.
+- Let's put `if st.sidebar.checkbox('See univariate distribution:')` to hide graph.
 - say that for now multipage is `if st.sidebar.selectbox`
 
-### Part 3
+### Part 3 - Caching
 
 - First let's refactor a bit to put loading data in a function `def load_data(f): return pd.read_csv(f)`.
   - say Streamlit displays your errors on screen, not in logs, when `pd.read_csv(None)`
@@ -59,10 +63,13 @@ Transition to interactive : now this is very static, what if I want to plot the 
 - Add `@st.cache`. Copy paste the suppress warning `@st.cache(allow_output_mutation=True, suppress_st_warning=True)`. 
 - Upload different files again.
 
-### Part 4
+### Part 4 - Jazz
 
+- New sidebar checkbox correlation `if st.sidebar.checkbox('Correlation':)`
+  - `fig, ax = plt.subplots(); sns.heatmap(df.corr(), ax=ax); st.pyplot(fig)`
 - New sidebar checkbox classification `if st.sidebar.checkbox('Classification':)`
 - Import utils : `from utils import *`. Replace `load_data`.
+- `st.number_input` for `n_estimators` and `max_depth`
 - `if st.button("Run Training")`.
   - `clf, confusion_matrix = train_rf(df)` 
   - `st.balloons()`

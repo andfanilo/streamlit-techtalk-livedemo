@@ -1,6 +1,7 @@
 import altair as alt
 import matplotlib.pyplot as plt
 import pandas as pd
+import seaborn as sns
 import streamlit as st
 
 from utils import load_data
@@ -46,13 +47,23 @@ def main():
             st.altair_chart(chart)
         st.markdown("---")
 
+    if st.sidebar.checkbox("Correlation", False):
+        st.subheader("Correlation")
+        fig, ax = plt.subplots()
+        sns.heatmap(df.corr(), ax=ax)
+        st.pyplot(fig)
+        st.markdown("---")
+
     if st.sidebar.checkbox("Classification", False):
         st.subheader("Classification")
+        n_estimators = st.number_input("Choose number of trees:", 1, 1000, 100)
+        max_depth = st.number_input("Max depth:", 1, 100, 5)
 
         if st.button("Run training"):
-            clf, confusion_matrix = train_rf(df)
-            st.balloons()
-            st.pyplot(confusion_matrix)
+            with st.spinner("Training en cours"):
+                clf, confusion_matrix = train_rf(df, n_estimators, max_depth)
+                st.balloons()
+                st.pyplot(confusion_matrix)
 
         st.markdown("---")
 
