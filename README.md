@@ -12,8 +12,6 @@ pip install streamlit pandas altair matplotlib seaborn plotly bokeh scikit-learn
 
 ```bash
 streamlit run app.py
-# or
-streamlit run https://raw.githubusercontent.com/andfanilo/streamlit-lyondatascience-20200422/master/app_final.py
 ```
 
 ## Demo steps
