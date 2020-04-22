@@ -36,7 +36,7 @@ streamlit run https://raw.githubusercontent.com/andfanilo/streamlit-lyondatascie
 - So to build chart : `chart = alt.Chart(df).mark_bar().encode(x="Age", y="count()", tooltip=['Age']).interactive()` then into `st.altair_chart(chart)`
 - Change bar to red `.mark_bar(color="red")`
 - Add color by Survived instead `.encode(x="Age", y="count()", color="Survived")`
-- If it's hard to remember, wrap with echo to see code `with st.echo: chart = ...`.
+- If it's hard to remember, wrap with echo to see code `with st.echo(): chart = ...`.
 
 Transition to interactive : now this is very static, what if I want to plot the distribution of another column ?
 
