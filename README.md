@@ -1,6 +1,6 @@
-# Streamlit Lyon Data Science Demo - Titanic Live analysis with Streamlit
+# Streamlit Live Demo - Titanic analysis
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/andfanilo/streamlit-lyondatascience-20200422/app_final.py)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/andfanilo/streamlit-techtalk-livedemo/app_final.py)
 
 ## Prerequisites
 
