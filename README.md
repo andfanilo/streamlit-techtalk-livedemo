@@ -114,10 +114,11 @@ with st.form(key="classify"):
 
 if button_pressed:
     with st.spinner("Training en cours"):
-        clf, confusion_matrix, importance_plot = train_rf(df, n_estimators, max_depth)
+        clf, confusion_matrix, importance_plot, force_plot = train_rf(df, n_estimators, max_depth)
         st.balloons()
         st.pyplot(confusion_matrix)
         st.pyplot(importance_plot)
+        st_shap(force_plot, 400)
 ```
 
 ## Resources
