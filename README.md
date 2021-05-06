@@ -30,7 +30,7 @@ streamlit run app.py
 - Pull an image of Titanic : `st.image("images/titanic.jpg", width=300)`.
 - Now let's plot, first read Titanic in DF `df = pd.read_csv('data/titanic.csv')`.
   - We can `st.dataframe(df)` to see our dataframe live.
-  - Tip : Style dataframe : `st.dataframe(df.style.background_gradient(cmap="BuGn"))`
+  - Tip : Style dataframe : `st.dataframe(df.style.applymap(lambda data: f"background-color: {'red' if data==0 else 'green'}", subset=['Survived']))`
 - Plot Matplotlib Age distribution (built server side as static image)
 
 ```python
