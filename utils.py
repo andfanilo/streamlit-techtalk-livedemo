@@ -2,7 +2,8 @@ from pathlib import Path
 
 import matplotlib.pyplot as plt
 import pandas as pd
-import streamlit as st
+import shap
+import streamlit.components.v1 as components
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import plot_confusion_matrix
 from sklearn.model_selection import train_test_split
@@ -49,4 +50,21 @@ def train_rf(df, n_estimators=100, max_depth=3):
     fig, ax = plt.subplots()
     plot_confusion_matrix(clf, X_test, y_test, ax=ax)
 
-    return clf, fig
+    explainer = shap.TreeExplainer(clf)
+    shap_values = explainer.shap_values(X)
+    fig_importance = plt.figure()
+    shap.summary_plot(shap_values, X, show=False)
+
+    return (
+        clf,
+        fig,
+        fig_importance,
+        shap.force_plot(
+            explainer.expected_value[1], shap_values[1][:500, :], X.iloc[:500, :]
+        ),
+    )
+
+
+def st_shap(plot, height=None):
+    shap_html = f"<head>{shap.getjs()}</head><body>{plot.html()}</body>"
+    components.html(shap_html, height=height)
