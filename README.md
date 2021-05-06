@@ -65,7 +65,7 @@ Transition to interactive : now this is very static, what if I want to plot the 
 - `col = st.selectbox("...", df.columns, df.columns.values.tolist().index("Age"))`
   - select `Pclass`, then `Name`, I like `Name` :) .
 
-### Part 2 - Interactive
+### Part 2 - Interactive widgets and layout
 
 - so widget state is stored inside object directly
 - I like file uploader, let's use it. `f = st.file_uploader(..)` f is directly file uploaded. 
@@ -82,9 +82,16 @@ df = pd.read_csv(f)
 - Let's put expander to hide dataframe.
 ```python
 with st.beta_expander("Data preview"):
-    st.dataframe(df.style.background_gradient(cmap="BuGn"))
+    st.dataframe(df.style.applymap(lambda data: f"background-color: {'red' if data==0 else 'green'}", subset=['Survived']))
+    st.image("images/titanic.jpg", width=200)
 ```
-- say that for now multipage is `if st.sidebar.selectbox`
+- Columns
+```python
+with st.beta_expander("Data preview"):
+    c1, c2 = st.beta_columns(2)
+    c1.dataframe(df.style.applymap(lambda data: f"background-color: {'red' if data==0 else 'green'}", subset=['Survived']))
+    c2.image("images/titanic.jpg", width=200)
+```
 
 ### Part 3 - Caching
 
