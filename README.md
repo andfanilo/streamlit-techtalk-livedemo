@@ -70,7 +70,14 @@ Transition to interactive : now this is very static, what if I want to plot the 
 - so widget state is stored inside object directly
 - I like file uploader, let's use it. `f = st.file_uploader(..)` f is directly file uploaded. 
   - `None` for now, `st.write(f)` to prove it
-- `if f is not None:` run the code. Then change csv files.
+- `if f is not None:` run the code. 
+
+```python
+f = st.file_uploader("Select file", type=["csv"])
+df = pd.read_csv(f)
+```
+
+- Then change csv files.
 - If you remember sidebar, put file_uploader in sidebar `f = st.sidebar.file_uploader(..)`.
 - Let's put expander to hide dataframe.
 ```python
