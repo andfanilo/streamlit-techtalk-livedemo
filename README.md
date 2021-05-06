@@ -106,15 +106,18 @@ with st.beta_expander("Data preview"):
 - Import utils : `from utils import *`. Replace `load_data`.
 ```python
 st.subheader("Classification")
-c1, c2 = st.beta_columns(2)
-n_estimators = c1.number_input("Choose number of trees:", 1, 1000, 100)
-max_depth = c2.number_input("Max depth:", 1, 100, 5)
+with st.form(key="classify"):
+    c1, c2 = st.beta_columns(2)
+    n_estimators = c1.number_input("Choose number of trees:", 1, 1000, 100)
+    max_depth = c2.number_input("Max depth:", 1, 100, 5)
+    button_pressed = st.form_submit_button(label="Train model")
 
-if st.button("Run training"):
+if button_pressed:
     with st.spinner("Training en cours"):
-        clf, confusion_matrix = train_rf(df, n_estimators, max_depth)
+        clf, confusion_matrix, importance_plot = train_rf(df, n_estimators, max_depth)
         st.balloons()
         st.pyplot(confusion_matrix)
+        st.pyplot(importance_plot)
 ```
 
 ## Resources
