@@ -1,8 +1,7 @@
-altair 
-bokeh 
+altair  
 pandas 
-matplotlib 
-plotly 
+matplotlib  
 scikit-learn
-seaborn 
-streamlit 
+seaborn
+shap
+streamlit
