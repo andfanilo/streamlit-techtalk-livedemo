@@ -46,7 +46,7 @@ st.pyplot(fig)
 
 - So to build chart, built client side not server side
 ```python
-chart = alt.Chart(df).mark_bar().encode(x="Age", y="count()", color="Survived", tooltip=['Age', "count()"]).interactive()
+chart = alt.Chart(df).mark_bar().encode(x="Age", y="count()", color="Survived:N", tooltip=['Age', "count()"]).interactive()
 st.altair_chart(chart)
 st.altair_chart(chart, use_container_width=True)
 ```
