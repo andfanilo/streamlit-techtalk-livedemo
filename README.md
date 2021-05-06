@@ -63,7 +63,7 @@ Transition to interactive : now this is very static, what if I want to plot the 
 - I don't remember exactly how `st.selectbox` works so `st.help(st.selectbox)`, works with any Python object.
 - extract `col = "Age"` and then `st.help(st.selectbox)` then `col = st.selectbox("...", df.columns)`.
 - `col = st.selectbox("...", df.columns, df.columns.values.tolist().index("Age"))`
-  - put `Name`, I like `Name` :) .
+  - select `Pclass`, then `Name`, I like `Name` :) .
 
 ### Part 2 - Interactive
 
