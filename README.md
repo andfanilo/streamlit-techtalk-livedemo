@@ -120,6 +120,7 @@ if button_pressed:
         st.pyplot(importance_plot)
         st_shap(force_plot, 400)
 ```
+- Check Age to Age Effects, Age to Pclass effects
 
 ## Resources
 
