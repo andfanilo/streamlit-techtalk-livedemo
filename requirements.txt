@@ -59,15 +59,15 @@ ipykernel==5.5.4
     #   ipywidgets
     #   notebook
     #   pydeck
+ipython==7.23.1
+    # via
+    #   ipykernel
+    #   ipywidgets
 ipython-genutils==0.2.0
     # via
     #   nbformat
     #   notebook
     #   traitlets
-ipython==7.23.1
-    # via
-    #   ipykernel
-    #   ipywidgets
 ipywidgets==7.6.3
     # via pydeck
 jedi==0.18.0
@@ -105,12 +105,12 @@ llvmlite==0.36.0
     # via numba
 markupsafe==1.1.1
     # via jinja2
-matplotlib-inline==0.1.2
-    # via ipython
 matplotlib==3.4.1
     # via
     #   -r requirements.in
     #   seaborn
+matplotlib-inline==0.1.2
+    # via ipython
 mistune==0.8.4
     # via nbconvert
 nbclient==0.5.3
@@ -160,7 +160,7 @@ pexpect==4.8.0
     # via ipython
 pickleshare==0.7.5
     # via ipython
-pillow==8.2.0
+pillow==8.3.2
     # via
     #   matplotlib
     #   streamlit
